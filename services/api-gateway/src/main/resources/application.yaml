@@ -18,6 +18,12 @@ spring:
             - Path=/products/**
           filters:
             - RewritePath=/products/(?<path>.*), /$\{path}
+        - id: order-service
+          uri: lb://order-service
+          predicates:
+            - Path=/orders/**
+          filters:
+            - RewritePath=/orders/(?<path>.*), /$\{path}
 eureka:
   client:
     serviceUrl:

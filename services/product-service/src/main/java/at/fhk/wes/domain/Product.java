@@ -8,8 +8,8 @@ public class Product {
     private final String description;
     private final Double price;
 
-    public Product(UUID id, String name, String description, Double price) {
-        this.id = id;
+    public Product(String name, String description, Double price) {
+        this.id = UUID.randomUUID();
         this.name = name;
         this.description = description;
         this.price = price;
