@@ -1,0 +1,8 @@
+rootProject.name = 'EcommerceProject'
+include 'services:api-gateway'
+include 'services:service-registry'
+include 'services:user-service'
+include 'services:product-service'
+include 'services:cart-service'
+include 'services:order-service'
+include 'services:order-cache-service'
