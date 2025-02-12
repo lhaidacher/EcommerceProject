@@ -1,0 +1,40 @@
+###
+# @name FilterAllProductsByName
+GET http://{{host}}:8080/products?filter=Dell
+
+###
+# @name PutProductIntoCart
+POST http://{{host}}:8080/carts
+Content-Type: application/json
+
+{
+  "name": "MacBook Pro",
+  "description": "Apple MacBook Pro 16GB black",
+  "price": 1399.99
+}
+
+###
+# @name PutProductIntoCart
+POST http://{{host}}:8080/carts
+Content-Type: application/json
+
+{
+  "name": "Dell XPS 13",
+  "description": "Dell XPS 13 Ultrabook with InfinityEdge display",
+  "price": 1199.99
+}
+
+###
+# @name CleanUpShoppingCart
+DELETE http://{{host}}:8080/carts
+
+###
+# @name PutProductIntoCart
+POST http://{{host}}:8080/carts
+Content-Type: application/json
+
+{
+  "name": "Dell XPS 13",
+  "description": "Dell XPS 13 Ultrabook with InfinityEdge display",
+  "price": 1199.99
+}
