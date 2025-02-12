@@ -24,7 +24,15 @@ spring:
             - Path=/orders/**
           filters:
             - RewritePath=/orders/(?<path>.*), /$\{path}
+        - id: cart-service
+          uri: lb://cart-service
+          predicates:
+            - Path=/carts/**
+          filters:
+            - RewritePath=/carts/(?<path>.*), /$\{path}
 eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
+  instance:
+    instance-id: ${spring.application.name}:${random.int[1000,9999]}

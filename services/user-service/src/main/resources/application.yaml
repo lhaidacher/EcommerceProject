@@ -1,8 +1,8 @@
 # ===================================================================
 # APPLICATION PROPERTIES
 # ===================================================================
+server:
+  port: 8081
 spring:
   application:
     name: user-service
-server:
-  port: 8081
