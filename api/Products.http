@@ -1,0 +1,25 @@
+### GET request without filter
+# @name FindAllProducts
+GET http://{{host}}:8080/products
+
+### GET request with name-filter
+# @name FilterAllProductsByName
+GET http://{{host}}:8080/products?filter=MacBook
+
+### GET request without id-filter
+# @name FilterAllProductsById
+GET http://{{host}}:8080/products?id=9456e28e-b8df-4822-b826-0e791f41390e
+
+### PUT request to block products
+# @name BlockProductsByProduct
+PUT http://{{host}}:8080/products/block
+Content-Type: application/json
+
+[
+  {
+    "name": "MacBook Pro",
+    "description": "Apple MacBook Pro 16GB black",
+    "price": 1399.99,
+    "id": "440cf341-b328-4573-9b9e-947d30edce14"
+  }
+]

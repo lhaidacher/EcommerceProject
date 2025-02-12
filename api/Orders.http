@@ -1,0 +1,21 @@
+### GET request without authorization
+# @name GetOrders
+GET http://{{host}}:8080/orders
+
+### GET request with authorization
+# @name GetOrders
+GET http://{{host}}:8080/orders
+Authorization: Token
+
+### POST place order
+# @name PlaceOrder
+POST http://{{host}}:8080/orders
+Content-Type: application/json
+Authorization: Token
+
+{
+  "id": "0ce00091-4e48-483b-9a5e-2c0673c2e43c",
+  "name": "MacBook Pro",
+  "description": "Apple MacBook Pro 16GB black",
+  "price": 1399.99
+}
