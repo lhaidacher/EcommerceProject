@@ -5,6 +5,7 @@ import at.fhk.wes.domain.Product;
 import at.fhk.wes.service.ProductService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
@@ -43,5 +44,11 @@ public class CartController {
         productService.releaseProducts(cart.getProducts());
         cart = new Cart();
         return cart;
+    }
+
+    @Scheduled(cron = "*/30 * * * * *")
+    public void cleanUpJob() {
+        logger.info("started cleanUpJob() method");
+        this.cleanUpCart();
     }
 }
