@@ -20,7 +20,7 @@ public class CartController {
     }
 
     @GetMapping
-    public Cart getOrders() {
+    public Cart getCart() {
         return cart;
     }
 }
