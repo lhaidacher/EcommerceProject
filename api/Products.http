@@ -20,6 +20,20 @@ Content-Type: application/json
     "name": "MacBook Pro",
     "description": "Apple MacBook Pro 16GB black",
     "price": 1399.99,
-    "id": "440cf341-b328-4573-9b9e-947d30edce14"
+    "id": "42ae1dc9-a8e2-45bd-8998-1c162f3daa09"
+  }
+]
+
+### PUT request to block products
+# @name ReleaseProductsByProduct
+PUT http://{{host}}:8080/products/release
+Content-Type: application/json
+
+[
+  {
+    "name": "MacBook Pro",
+    "description": "Apple MacBook Pro 16GB black",
+    "price": 1399.99,
+    "id": "42ae1dc9-a8e2-45bd-8998-1c162f3daa09"
   }
 ]

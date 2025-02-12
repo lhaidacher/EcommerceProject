@@ -31,6 +31,13 @@ public class Cart {
         products.add(product);
     }
 
+    public Double getPrice() {
+        return products.stream()
+                .map(Product::getPrice)
+                .reduce(Double::sum)
+                .orElse(0.0);
+    }
+
     public Timestamp getCreatedAt() {
         return createdAt;
     }

@@ -3,24 +3,14 @@ package at.fhk.wes.domain;
 import java.util.UUID;
 
 public class Product {
-    private UUID id;
     private String name;
     private String description;
     private Double price;
 
-    public Product(UUID id, String name, String description, Double price) {
-        this.id = id;
+    public Product(String name, String description, Double price) {
         this.name = name;
         this.description = description;
         this.price = price;
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
     }
 
     public String getName() {

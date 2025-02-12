@@ -1,0 +1,7 @@
+###
+# @name FindAllProducts
+GET http://{{host}}:8080/products
+
+###
+# @name FilterAllProductsByName
+GET http://{{host}}:8080/products?filter=MacBook
