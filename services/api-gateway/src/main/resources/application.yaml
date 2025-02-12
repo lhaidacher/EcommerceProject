@@ -1,11 +1,23 @@
 # ===================================================================
 # APPLICATION PROPERTIES
 # ===================================================================
+server:
+  port: 8080
 spring:
   application:
     name: api-gateway
-server:
-  port: 8080
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: product-service
+          uri: lb://product-service
+          predicates:
+            - Path=/products/**
+          filters:
+            - RewritePath=/products/(?<path>.*), /$\{path}
 eureka:
   client:
     serviceUrl:
