@@ -1,6 +1,6 @@
 ###
 # @name FilterAllProductsByName
-GET http://{{host}}:8080/products?filter=Dell
+GET http://{{host}}:8080/products?filter=DEL
 
 ###
 # @name PutProductIntoCart
@@ -8,9 +8,9 @@ POST http://{{host}}:8080/carts
 Content-Type: application/json
 
 {
-  "name": "MacBook Pro",
-  "description": "Apple MacBook Pro 16GB black",
-  "price": 1399.99
+  "name": "Lenovo ThinkPad X1 Carbon",
+  "description": "Lenovo ThinkPad X1 Carbon, 14-inch display, Intel i7",
+  "price": 1499.99
 }
 
 ###
@@ -34,7 +34,7 @@ POST http://{{host}}:8080/carts
 Content-Type: application/json
 
 {
-  "name": "Dell XPS 13",
-  "description": "Dell XPS 13 Ultrabook with InfinityEdge display",
-  "price": 1199.99
+  "name": "MacBook Pro",
+  "description": "Apple MacBook Pro 16GB black",
+  "price": 1399.99
 }

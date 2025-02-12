@@ -7,15 +7,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Objects;
 import java.util.Set;
 
 @RestController
 @RequestMapping("/carts")
 public class CartController {
     private final Logger logger = LoggerFactory.getLogger(CartController.class);
-    private final Cart cart;
     private final ProductService productService;
+    private Cart cart;
 
     public CartController(ProductService productService) {
         this.cart = new Cart();
@@ -26,8 +25,8 @@ public class CartController {
     public Cart addToCart(@RequestBody Product product) {
         logger.info("started addToCart() method");
         if (cart.getProducts().stream().noneMatch(p -> p.getName().equals(product.getName()))) {
-            cart.addProduct(product);
             productService.blockProducts(Set.of(product));
+            cart.addProduct(product);
         }
         return cart;
     }
@@ -42,7 +41,7 @@ public class CartController {
     public Cart cleanUpCart() {
         logger.info("started cleanUpCart() method");
         productService.releaseProducts(cart.getProducts());
-        cart.getProducts().removeIf(Objects::nonNull);
+        cart = new Cart();
         return cart;
     }
 }

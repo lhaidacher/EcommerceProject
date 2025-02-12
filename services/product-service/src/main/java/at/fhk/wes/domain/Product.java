@@ -9,12 +9,14 @@ public class Product {
     private final String description;
     private final Double price;
     private boolean isAvailable;
+    private boolean isSold;
 
     public Product(String name, String description, Double price) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.isAvailable = true;
+        this.isSold = false;
     }
 
     public String getName() {
@@ -36,5 +38,14 @@ public class Product {
 
     public void setAvailable(boolean available) {
         isAvailable = available;
+    }
+
+    @JsonIgnore
+    public boolean isSold() {
+        return isSold;
+    }
+
+    public void setSold(boolean sold) {
+        isSold = sold;
     }
 }

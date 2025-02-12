@@ -7,11 +7,13 @@ import java.util.UUID;
 
 public class Order {
     public final UUID id;
+    public final BillingAddress billingAddress;
     public final Set<Product> products;
     public final Timestamp createdAt;
 
-    public Order(Set<Product> products) {
+    public Order(BillingAddress billingAddress, Set<Product> products) {
         this.id = UUID.randomUUID();
+        this.billingAddress = billingAddress;
         this.products = products;
         this.createdAt = Timestamp.from(Instant.now());
     }

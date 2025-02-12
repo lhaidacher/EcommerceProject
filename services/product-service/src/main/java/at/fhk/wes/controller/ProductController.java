@@ -3,7 +3,6 @@ package at.fhk.wes.controller;
 import at.fhk.wes.domain.Product;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -33,6 +32,7 @@ public class ProductController {
         logger.info("started getProducts() method");
         return products.values().stream()
                 .filter(Product::isAvailable)
+                .filter(product -> !product.isSold())
                 .filter(product -> filter.map(s -> product.getName().toLowerCase().contains(s.toLowerCase())).orElse(true))
                 .collect(Collectors.toSet());
     }
@@ -40,24 +40,38 @@ public class ProductController {
     @PutMapping("/block")
     public void blockProducts(@RequestBody Set<Product> products) {
         logger.info("started blockProducts() method");
-        this.updateProductAvailability(products, false);
+
+        products.forEach(product -> {
+            Product p = this.products.get(product.getName().hashCode());
+            if (p == null) throw new IllegalStateException("Product is not available.");
+            else if (p.isSold()) throw new IllegalArgumentException("Product is already sold.");
+            else if (!p.isAvailable()) throw new IllegalArgumentException("Product is already out of stock.");
+            else p.setAvailable(false);
+        });
     }
 
     @PutMapping("/release")
     public void releaseProducts(@RequestBody Set<Product> products) {
         logger.info("started releaseProducts() method");
-        this.updateProductAvailability(products, true);
+
+        products.forEach(product -> {
+            Product p = this.products.get(product.getName().hashCode());
+            if (p == null) throw new IllegalStateException("Product is not available.");
+            else if (p.isSold()) throw new IllegalArgumentException("Product is already sold.");
+            else if (p.isAvailable()) throw new IllegalArgumentException("Product is already available.");
+            else p.setAvailable(true);
+        });
     }
 
-    private void updateProductAvailability(@RequestBody Set<Product> products, boolean available) {
-        products.stream()
-                .filter(product -> {
-                    Product p = this.products.get(product.getName().hashCode());
-                    if (!available && p != null && !p.isAvailable())
-                        throw new IllegalArgumentException("Product is already out of stock.");
-                    return p != null;
-                })
-                .map(product -> this.products.get(product.getName().hashCode()))
-                .forEach(product -> product.setAvailable(available));
+    @PutMapping("/sell")
+    public void sellProducts(@RequestBody Set<Product> products) {
+        logger.info("started sellProducts() method");
+
+        products.forEach(product -> {
+            Product p = this.products.get(product.getName().hashCode());
+            if (p == null) throw new IllegalStateException("Product is not available.");
+            else if (p.isSold()) throw new IllegalArgumentException("Product is already sold.");
+            else p.setSold(true);
+        });
     }
 }

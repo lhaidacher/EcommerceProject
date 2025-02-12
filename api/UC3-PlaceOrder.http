@@ -1,0 +1,19 @@
+###
+# @name GetShoppingCart
+GET http://{{host}}:8080/carts
+
+###
+# @name PlaceOrder
+POST http://{{host}}:8080/orders
+Content-Type: application/json
+
+{
+  "street": "Mustergasse 5b",
+  "city": "Innsbruck",
+  "zip": "6020",
+  "country": "Österreich"
+}
+
+###
+# @name GetOrders
+GET http://{{host}}:8080/orders
